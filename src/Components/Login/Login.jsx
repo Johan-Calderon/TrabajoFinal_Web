@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../AuthContext/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import "./login.css";
+import "./Login.css";
 
 import {
   TextField,

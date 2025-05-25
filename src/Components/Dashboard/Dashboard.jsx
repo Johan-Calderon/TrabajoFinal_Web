@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../AuthContext/AuthContext";
 import { Box, Typography, Button } from "@mui/material";
-import "./dashboard.css";
+import "./Dashboard.css";
 
 //Importación de paneles
 import DashboardPanel from "./panels/DashboardPanel";

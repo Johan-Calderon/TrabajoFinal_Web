@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "./register.css";
+import "./Register.css";
 
 
 import {

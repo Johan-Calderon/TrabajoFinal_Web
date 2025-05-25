@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardActions, Typography } from "@mui/material";
-import "./cardbase.css";
+import "./CardBase.css";
 
 function CardBase({ title, subtitle, content, actions, className = "" }) {
   return (

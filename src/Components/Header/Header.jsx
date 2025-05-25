@@ -1,7 +1,7 @@
 import { useAuth } from "../../AuthContext/AuthContext";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import "./header.css";
+import "./Header.css";
 
 function Header() {
   const { currentUser, userRole, logout } = useAuth();
