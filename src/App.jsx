@@ -4,7 +4,7 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Header from "./Components/Header/Header";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import "./app.css";
+import "./App.css"; 
 
 
 const ProtectedRoute = ({ children }) => {
