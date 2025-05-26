@@ -4,14 +4,12 @@
   padding: 0;
 }
 
-
 .dashboard-main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: #f5f5f5;
 }
-
 
 .dashboard-header-bar {
   display: flex;
@@ -20,31 +18,65 @@
   background-color: #1976d2;
   color: white;
   padding: 0.5rem 1rem;
-  height: 48px;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  transition: margin-left 0.3s ease;
+}
+
+.dashboard-header-bar.drawer-open {
+  margin-left: 240px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-toggle-button {
+  color: white !important;
+  padding: 8px !important;
+  min-width: auto !important;
 }
 
 .header-title {
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .header-user-info {
   font-size: 0.85rem;
 }
 
-
 .content-wrapper {
   display: flex;
-  height: calc(100vh - 48px);
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
 }
 
-
+/* Persistent Drawer Styles */
 .dashboard-sidebar {
   width: 240px;
   background-color: white;
   border-right: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.dashboard-sidebar.drawer-open {
+  transform: translateX(0);
 }
 
 .sidebar-header {
@@ -53,6 +85,8 @@
   align-items: center;
   gap: 0.5rem;
   border-bottom: 1px solid #e0e0e0;
+  min-height: 80px;
+  margin-top: 64px;
 }
 
 .sidebar-logo-icon {
@@ -69,16 +103,19 @@
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0;
+  flex: 1;
 }
 
 .sidebar-menu-item {
   text-align: left !important;
   justify-content: flex-start !important;
-  padding: 2rem 2rem !important;
-  font-size: 0.75rem !important;
+  padding: 1rem 1.5rem !important;
+  font-size: 0.875rem !important;
   font-weight: 500 !important;
   color: #555 !important;
   border-radius: 0 !important;
+  text-transform: none !important;
+  transition: all 0.2s ease !important;
 }
 
 .sidebar-menu-item:hover {
@@ -88,19 +125,25 @@
 .sidebar-menu-item-active {
   background-color: #e3f2fd !important;
   color: #1976d2 !important;
-  border-left: 3px solid #1976d2 !important;
+  border-right: 3px solid #1976d2 !important;
 }
 
 .sidebar-logout {
   margin-top: auto !important;
   color: #f44336 !important;
+  border-top: 1px solid #e0e0e0 !important;
 }
-
 
 .dashboard-content {
   flex: 1;
   padding: 1.5rem;
   overflow-y: auto;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 64px);
+}
+
+.dashboard-content.drawer-open {
+  margin-left: 240px;
 }
 
 .dashboard-header {
@@ -119,7 +162,6 @@
   margin-top: 0.25rem;
 }
 
-
 .dashboard-cards {
   display: flex;
   gap: 1rem;
@@ -135,7 +177,6 @@
   min-width: 200px;
   flex: 1;
 }
-
 
 .projects-table-container {
   background-color: white;
@@ -154,10 +195,9 @@
 
 .view-all-button {
   color: #1976d2 !important;
-  font-size: 0.75rem !important;
+  font-size: 0.875rem !important;
   font-weight: 500 !important;
 }
-
 
 table {
   width: 100%;
@@ -178,4 +218,83 @@ td {
   border-bottom: 1px solid #e0e0e0;
   color: #555;
   font-size: 0.85rem;
+}
+
+/* Backdrop for mobile */
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.drawer-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .dashboard-header-bar {
+    margin-left: 0 !important;
+  }
+  
+  .dashboard-content {
+    margin-left: 0 !important;
+  }
+  
+  .dashboard-sidebar {
+    top: 0;
+    height: 100vh;
+  }
+  
+  .sidebar-header {
+    margin-top: 64px;
+  }
+  
+  .header-title {
+    font-size: 1rem;
+  }
+  
+  .dashboard-content {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop - drawer always visible option */
+  .dashboard-sidebar.persistent-desktop {
+    transform: translateX(0);
+    position: relative;
+    top: 0;
+    height: 100vh;
+  }
+  
+  .dashboard-header-bar.persistent-desktop {
+    margin-left: 240px;
+  }
+  
+  .dashboard-content.persistent-desktop {
+    margin-left: 0;
+  }
+  
+  .content-wrapper.persistent-desktop {
+    margin-left: 240px;
+  }
+  
+  .sidebar-header {
+    margin-top: 64px;
+  }
 }
