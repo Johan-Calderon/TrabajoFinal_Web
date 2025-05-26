@@ -5,7 +5,7 @@ import { Box, Typography, Button } from "@mui/material";
 import "./Dashboard.css";
 
 //Importación de paneles
-import DashboardPanel from "./panels/DashboardPanel";
+import DashboardPanel from "./Panels/DashboardPanel";
 import MisProyectosPanel from "./Panels/MisProyectosPanel";
 import CrearProyectoPanel from "./Panels/CrearProyectoPanel";
 import UsuariosPanel from "./Panels/UsuariosPanel";
